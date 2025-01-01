@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = int(os.getenv('DEBUG', 0))
+DEBUG = int(os.getenv('DEBUG', True))
 
 ALLOWED_HOSTS = []
 
@@ -42,6 +42,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     # Third Party App
     'django_extensions',
+    'tailwind',
+    'theme',
+    'django_browser_reload',
+
     # Custom App
     'auth_app',
 
@@ -55,6 +59,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    "django_browser_reload.middleware.BrowserReloadMiddleware",
 ]
 
 ROOT_URLCONF = 'trade_project.urls'
@@ -62,7 +67,7 @@ ROOT_URLCONF = 'trade_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -129,3 +134,11 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+# TailWind Configurations
+TAILWIND_APP_NAME = 'theme'
+
+INTERNAL_IPS = [ "127.0.0.1", ]
+
+NPM_BIN_PATH = r'C:\Program Files\nodejs\npm.cmd'
