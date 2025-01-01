@@ -2,6 +2,6 @@ from django.shortcuts import render
 
 # Create your views here.
 
-def home_view(request, *args, **kwargs):
-    return render(request=request, template_name="base/index.html", context=
+def login_view(request, *args, **kwargs):
+    return render(request=request, template_name="auth_app/login.html", context=
                   {})
